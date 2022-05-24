@@ -15,7 +15,7 @@
 	<div class="screen">
 		<div class="screen__content">
 		<%String path =  request.getContextPath();%>
-			<form class="login"  action=""  method="post">
+			<form class="login"  action="/baitapdangnhap/login"  method="post">
 				<div class="login__field">
 					<i class="login__icon fas fa-user"></i>
 					<input type="text" class="login__input" placeholder="User name / Email" name="email">

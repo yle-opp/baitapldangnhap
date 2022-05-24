@@ -25,19 +25,20 @@ public class AuthFilter implements Filter{
 	public void doFilter(ServletRequest request, ServletResponse reponse, FilterChain chain)
 			throws IOException, ServletException {
 		// TODO Auto-generated method stub
-		HttpServletRequest req =(HttpServletRequest) request;
-		HttpServletResponse resq =(HttpServletResponse) reponse;
-		
-		if(!req.getServletPath().startsWith("/login")) {
-			if(req.getSession().getAttribute("LOGIN_USER") != null) {
-				chain.doFilter(request, reponse);
-			}else {
-				resq.sendRedirect(req.getContextPath() +"/login");
-			}
-		}else {
-			chain.doFilter(request, reponse);
+		HttpServletRequest req = (HttpServletRequest) request;
+		HttpServletResponse resp = (HttpServletResponse) reponse;
+		// HttpSession session = req.getSession();
+
+		boolean isExistUser = false;
+		if (req.getSession().getAttribute("LOGIN_USER") != null) {
+			isExistUser = true;
 		}
-		
+
+		if (isExistUser) {
+			resp.sendRedirect(req.getContextPath() + "/home");
+		}
+
+		chain.doFilter(req, resp);
 		
 		
 	}
